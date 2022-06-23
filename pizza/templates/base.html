@@ -1,0 +1,65 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel ="stylesheet" href="{% static 'css/pretty-checkbox.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<title>
+  {% if 'signin' in request.path %}
+    My-pizza-signin
+    {% elif 'signup' in request.path %}
+    My-pizza-signup
+    {% elif 'products' in request.path %}
+    My-pizza-products
+    {% elif 'flavor' in request.path %}
+        My-pizza-flavor
+    {% elif 'about' in request.path %}
+     My-pizza-about
+     {% elif 'search' in request.path %}
+     My-pizza-search
+     {% elif 'profile' in request.path %}
+     My-pizza-profile
+     {% elif 'mycard' in request.path  %}
+     My-pizza-mycart
+    {% else %}
+    My-pizza
+   {% endif %}
+</title>
+<style>
+    #lib{
+        
+        font-size: 2;
+      }
+</style>
+</head>
+<body>
+
+{% include 'partials/nav.html'%}
+{% block content %}
+ 
+{% endblock content %}
+{% include 'partials/foot.html'%}
+  <script src="{%  static 'js/jquery-3.4.1.slim.min.js' %}"></script>
+  <script src="{%  static 'js/popper.min.js' %}"></script>
+  <script src="{%  static 'js/bootstrap.min.js'%}"></script>
+  <script>
+     $(function () {
+          $('[data-toggle="popover"]').popover()
+      })
+      $(".year").text( (new Date).getFullYear() );
+  </script>
+      <script type="text/javascript">
+      var btn=document.getElementById("btns");
+      btn.onclick=function(){
+      window.location="search.html";
+      };
+      </script>
+      
+</body>
+
+</html>

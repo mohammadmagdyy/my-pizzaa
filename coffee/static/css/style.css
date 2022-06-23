@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merienda&display=swap');
+
+
+html,body{
+	width:100%;
+	height:100%;
+	
+}
+body{
+	 font-family: 'Merienda', cursive;
+	padding-top:65px;
+}
+.navbar-custom{
+	transition:0.5s;
+	background-color:darkred;
+	margin-bottom:150px;
+	
+}
+#su{
+	margin-top:1400px;
+	
+}
+.img-brand{
+	
+	width:100px;
+	height:100px;
+	transition:0.5s;
+	border-radius:50x;
+}
+.img-brand:hover{
+    transform: rotate(360deg);
+}
+.navbar-brand:hover .img-brand{
+    box-shadow: 1px 1px 10px #fff,
+                -1px -1px 10px #fff;
+}
+.navbar-brand{
+	  font-family: 'Gloria Hallelujah', cursive;
+    transition: 0.5s;
+	
+}
+.navbar-brand:hover{
+	 text-shadow: 1px 1px 10px #fff,
+                -1px -1px 10px #fff;
+    transform: rotate(-1deg);
+	
+}
+.navbar-custom:hover:not(footer) {
+  background-color: #71131Eee; 
+}
+
+.navbar li{
+    transition: 0.5s;
+}
+
+.navbar li:hover:not([id=pizza-nav-item]){
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#pizza-nav-item:hover{
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}
+
+
+#pizza-nav-item{
+  background-color:#5A020Cce;
+  border-radius: 25px;
+}
+a{
+  color: rgb(255, 231, 204) ;
+}
+
+a:hover{
+  color: #fff;
+}
+@media (min-width: 100px) {
+    .animate {
+      animation-duration: 0.3s;
+      -webkit-animation-duration: 0.3s;
+      animation-fill-mode: both;
+      -webkit-animation-fill-mode: both;
+    }
+}
+.container-fluid{
+	margin-top:75px;
+	
+}
+.jumbotron{
+  background-color: antiquewhite;
+  color: #71131E;
+  
+}
+
+.rounded-bottom{
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+.mycoffee-svg{
+  width: 100%;
+  padding-left: 0px;
+  opacity: 0.8;
+  transition: 0.5s;
+  border-radius:20px;
+  width:140px;
+}
+
+.mycoffee-svg:hover{
+  opacity: 1;
+  transform: rotate(-60deg);
+}
+@keyframes slideIn {
+    0% {
+      transform: translateY(1rem);
+      opacity: 0;
+    }
+    100% {
+      transform:translateY(0rem);
+      opacity: 1;
+    }
+    0% {
+      transform: translateY(1rem);
+      opacity: 0;
+    }
+}
+  
+@-webkit-keyframes slideIn {
+    0% {
+      -webkit-transform: transform;
+      -webkit-opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateY(0);
+      -webkit-opacity: 1;
+    }
+    0% {
+      -webkit-transform: translateY(1rem);
+      -webkit-opacity: 0;
+    }
+}
+ 
+.valid{
+	
+	display:none;
+}
+.invalid{
+	color:red;
+	text-align:center;
+	
+}
+.slideIn {
+    -webkit-animation-name: slideIn;
+    animation-name: slideIn;
+}
+
+textarea:focus, 
+select:focus, 
+select.custom-select:focus, 
+textarea.form-control:focus, 
+input.form-control:focus, 
+input[type=text]:focus, 
+input[type=password]:focus, 
+input[type=email]:focus, 
+input[type=number]:focus, 
+[type=text].form-control:focus, 
+[type=password].form-control:focus, 
+[type=email].form-control:focus, 
+[type=tel].form-control:focus, 
+[contenteditable].form-control:focus {
+  box-shadow: inset 0 -1px 0 #dddddd00,
+             1px 1px 6px #ffc107,
+             -1px -1px 6px #ffc107;
+}
+
+.carousel-inner img{
+  width: 100%;
+  height: 100%;
+ 
+}
+.my-num{
+  color:blue;
+  font-weight: bold;
+  border: dashed red;
+  border-radius:100rem;
+  background-color: #ffc107;
+}
+.input-group-addon{
+  color:rgb(255, 255, 16);
+  position:center;
+  background-color: rgb(14, 177, 101);
+  width:25px;
+  height:45px;
+ 
+}

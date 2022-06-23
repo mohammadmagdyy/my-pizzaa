@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br>
+<div class="my-form container p-5 my-5 rounded border border-warning">
+    <form>
+<h1 class="text-center" >All products</h1>
+<hr>
+<section>
+   <div class="container-fluid ">
+      <div class="row p-4" style="padding-left: 17% ;">
+    {%  for pro in products %}
+      <div>
+  <div class="card m-2" style="width:18rem;">
+    <img src="{{pro.photo}}" class="card-img-top" alt="...">
+
+<div class="card-body">
+<h5 class="card-title">{{pro.name}}</h5>
+<p class="card-text text-truncate">{{pro.description}}</p>
+<a href="{% url 'flavor' pro_id=pro.id %}" class="btn btn-warning">show details</a>
+</div>
+</div>
+</div>
+
+{% endfor %}
+
+
+
+
+</div>
+</div></div>
+
+</form>
+
+</div>
+<br>
+{% endblock content %}

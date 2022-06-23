@@ -1,0 +1,373 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<br>
+
+<div class="my-form container p-5 my-5 rounded border border-warning">
+    <form id="identicalForm" class="form-horizontal" data-by-feedback-icons-valid="glyphicon glyphicon-ok"
+    data-by-feedback-icons-invalid="glyphicon glyphicon-remove"
+     data-by-feedback-icons-validating="glyphicon glyphicon-refresh"
+    method="POST"
+     >
+     {% csrf_token %}
+    <h2 class="text-center">sign up</h2>
+    <hr>
+    {% if request.user.is_authenticated %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong></strong>
+      welcome,{{request.user.username}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    {% else %}
+{% if messages %}
+
+      {% for msg in messages %}
+                <div class="alert alert-{{msg.tags}} alert-dismissible fade show" role="alert">
+                  <strong></strong>
+                  {{msg}}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+            {% endfor %}
+
+       {% endif %}
+       {% endif %}
+       {% if request.user.is_authenticated  %}
+       <div class="form-row" style="display:none;" >
+      
+        <div class="col-lg-7 mb-3">
+          <label for="validationServer01">Full name</label>
+          <input type="text" class="form-control " name="fname" id="validationServer01" placeholder="Enter your first name" value="{{fname}}" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-lg-7  mb-3">
+          <label for="validationServer02">user name</label>
+          <input type="text" class="form-control " name="user" id="validationServer02" placeholder="Enter your user name" value="{{user}}" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+      
+      <div class="col-lg-7  mb-3">
+          <label for="validationServer03">phone number</label>
+          <input type="tel" class="form-control " name="phone" id="validationServer03" placeholder="Enter your phone number" value="{{phone}}" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+     </div>
+
+       {% else %}
+       
+      <div class="form-row" >
+      
+        <div class="col-lg-7 mb-3">
+          <label for="validationServer01">Full name</label>
+          <input type="text" class="form-control " style="height:45px;"name="fname" id="validationServer01" placeholder="Enter your first name" value="{{fname}}" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-lg-7  mb-3">
+          <label for="validationServer02">user name</label>
+          <input type="text" class="form-control " style="height:45px;" name="user" id="validationServer032" placeholder="Enter your user name" value="{{user}}" required>
+          <div id="libe" style="display:none;">
+            Memorize well as you will use it to sign in
+          </div>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+      
+      <div class="col-lg-7  mb-3">
+          <label for="validationServer03">phone number</label>
+          <input type="tel" class="form-control " style="height:45px;"name="phone" id="validationServer03" placeholder="Enter your phone number" value="{{phone}}" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+     </div>
+     {% endif %}
+     {% if request.user.is_authenticated  %}
+     <div class="form-row" style="display:none;">
+      
+      <div class="col-lg-6 mb-3">
+        <label for="validationServer01">password</label>
+        <input type="password" class="form-control " name="pass" id="validationServer0112" placeholder="Enter a sutible password"name="password"
+        value="{{pass}}"
+    data-by-identical="true"
+     data-by-identical-field="confirm password"
+      data-by-identical-message="the password and its confirm are not the same"
+        required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+       
+      </div>
+      <div class="col-lg-6  mb-3">
+        <label for="validationServer02">confirm password</label>
+        <input type="password" class="form-control " value="{{confirmpass}}" name="confirmpass" id="validationServer02" placeholder="confirm password" 
+               data-by-identical="true"
+     data-by-identical-field="password"
+      data-by-identical-message="the password and its confirm are not the same"
+  
+        required>
+        <div class="valid-feedback">
+         val
+        </div>
+        <h6 id="rw" class="valid">passwords don,t match</h6>
+      </div>
+      <div  id="lib" style="display:none" >
+     
+       
+         
+            <label  >
+              Password must have 8 characters including an upper case letter,lower case letter and a number
+             </label>
+         
+        
+       </div>
+    </div>
+     {% else %}
+       <div class="form-row">
+      
+        <div class="col-lg-6 mb-3">
+          <label for="validationServer01">password</label>
+          
+          <div class="input-group">
+            
+          <input type="password" class="form-control " style="height:45px;"pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name="pass" id="validationServer0112" placeholder="Enter a sutible password"name="password"
+          value="{{pass}}"
+      data-by-identical="true"
+       data-by-identical-field="confirm password"
+        data-by-identical-message="the password and its confirm are not the same"
+          required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="input-group-addon" >
+            <i class="bi bi-eye"  ></i>
+            <input type="checkbox"style="margin-buttom:5px;"   onclick="showpass()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+              <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+              <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+            </svg>
+            </button>
+            </span>
+          </div>
+        </div>
+        </div>
+        <div class="col-lg-6  mb-3">
+          <label for="validationServer02">confirm password</label>
+          <input type="password" class="form-control " style="height:45px;" value="{{confirmpass}}" name="confirmpass" id="validationServer02" placeholder="confirm password" 
+                 data-by-identical="true"
+       data-by-identical-field="password"
+        data-by-identical-message="the password and its confirm are not the same"
+    
+          required>
+          <div class="valid-feedback">
+           val
+          </div>
+          <h6 id="rw" class="valid">passwords don,t match</h6>
+        </div>
+        <div  id="lib" style="display:none" >
+       
+         
+           
+              <label  >
+                Password must have <span id="char" class="invalid">8 characters </span>including <span id="up" class="invalid">an upper case letter</span> ,<span id="low" class="invalid">lower case letter</span><span id="numb" class="invalid"> and a number</span>
+               </label>
+           
+          
+         </div>
+      </div>
+      {%  endif %}
+    
+     
+     {% if request.user.is_authenticated %}
+     <div class="form-row" style="display:none;">
+      <div class="col-lg-6 mb-3">
+        <label for="validationServer03">City</label>
+        <input type="text" class="form-control" value="{{city}}" name="city" id="validationServer03" aria-describedby="validationServer03Feedback" placeholder="Enter your city" required>
+        <div id="validationServer03Feedback" class="invalid-feedback">
+          Please provide a valid city.
+        </div>
+      </div>
+      <div class="col-lg-3 mb-3">
+        <label for="validationServer04">Gender</label>
+        <select class="custom-select " value="{{gender}}" name="gender" id="validationServer04" aria-describedby="validationServer04Feedback" required>
+          <option selected disabled value="">Choose...</option>
+          <option>Male</option>
+           <option>Fe-Male</option>
+        </select>
+        
+        <div id="validationServer04Feedback" class="invalid-feedback">
+          Please select a valid gender.
+        </div>
+      </div>
+      <div class="col-lg-3 mb-3">
+        <label for="validationServer05">E-mail</label>
+        <input type="text" class="form-control " value="{{email}}"name="email" id="validationServer05" aria-describedby="validationServer05Feedback" placeholder="Enter your email" required>
+        <div id="validationServer05Feedback" class="invalid-feedback">
+          Please provide a valid email.
+        </div>
+      </div>
+    </div>
+     {% else %}
+      <div class="form-row">
+        <div class="col-lg-6 mb-3">
+          <label for="validationServer03">City</label>
+          <input type="text" class="form-control" style="height:45px;"value="{{city}}" name="city" id="validationServer03" aria-describedby="validationServer03Feedback" placeholder="Enter your city" required>
+          <div id="validationServer03Feedback" class="invalid-feedback">
+            Please provide a valid city.
+          </div>
+        </div>
+        <div class="col-lg-3 mb-3">
+          <label for="validationServer04">Gender</label>
+          <select class="custom-select " style="height:45px;" value="{{gender}}" name="gender" id="validationServer04" aria-describedby="validationServer04Feedback" required>
+            <option selected disabled value="">Choose...</option>
+            <option>Male</option>
+             <option>Fe-Male</option>
+          </select>
+         
+          <div id="validationServer04Feedback" class="invalid-feedback">
+            Please select a valid gender.
+          </div>
+        </div>
+        <div class="col-lg-3 mb-3">
+          <label for="validationServer05">E-mail</label>
+          <input type="text" class="form-control " style="height:45px;"value="{{email}}"name="email" id="validationServer05" aria-describedby="validationServer05Feedback" placeholder="Enter your email" required>
+          <div id="validationServer05Feedback" class="invalid-feedback">
+            Please provide a valid email.
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% if request.user.is_authenticated %}
+      <div class="form-group" style="display:none;">
+        <div class="form-check">
+          <input class="form-check-input " name="terms" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback"  required>
+          <label class="form-check-label" for="invalidCheck3">
+            Agree to terms and conditions
+          </label>
+          <div  id="invalidCheck3Feedback" class="invalid-feedback">
+            You must agree before submitting.
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <div class="form-group">
+        <div class="form-check">
+          <input class="form-check-input " name="terms" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback"  required>
+          <label class="form-check-label" for="invalidCheck3">
+            Agree to terms and conditions
+          </label>
+          <div  id="invalidCheck3Feedback" class="invalid-feedback">
+            You must agree before submitting.
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {%  if request.user.is_authenticated %}
+      <div class="form-row " style="display:none;">
+        <div class="col-lg-6 mb-3">
+        <button class="btn btn-outline-success" name="btnsubmitup"type="submit">Submit </button>
+        </div>
+        <div class="col-lg-6 mb-3">
+        <button class="btn btn-outline-danger" type="reset" >Reset</button>
+        </div>
+        </div>
+
+      {% else %}
+      <div class="form-row d-flex justify-content-center">
+      <div class="col-lg-6 mb-3">
+      <button class="btn btn-outline-success" name="btnsubmitup"type="submit">Submit </button>
+      </div>
+      <div class="col-lg-6 mb-3">
+      <button class="btn btn-outline-danger" type="reset" >Reset</button>
+      </div>
+      </div>
+      {% endif %}
+    </form>
+    <script>
+      var pass = document.getElementById("validationServer0112");
+      var lib = document.getElementById("lib");
+     
+      var uppercase=document.getElementById("up");
+      var lowercase=document.getElementById("low");
+      var number=document.getElementById("numb");
+     
+      pass.onfocus=function(){
+      
+            lib.style.display='block';
+        
+      }
+      pass.onkeyup=function(){
+        var capletter= /[A-Z]/g;
+        if(pass.value.match(capletter)){
+         uppercase.style.color='green';
+         
+         }else{
+          uppercase.style.color='red';
+         }
+         var smallletter=/[a-z]/g;
+         if(pass.value.match(smallletter)){
+            lowercase.style.color='green';
+         }else{
+           lowercase.style.color='red';
+         }
+         var nbars=/[0-9]/g;
+         if(pass.value.match(nbars)){
+           number.style.color='green';
+         }else{
+           number.style.color='red';
+         }
+         if(pass.value.length>=8){
+           document.getElementById("char").style.color='green';
+         }else{
+          document.getElementById("char").style.color='red';
+         }
+         if(pass.value.match(capletter)&&pass.value.match(smallletter)&&pass.value.match(nbars)&&pass.value.length>=8){
+           lib.style.display='none';
+         }
+      }
+      pass.onblur=function(){
+        lib.style.display='none';
+      }
+     
+  </script>
+  <script>
+    
+
+   function showpass(){
+    
+    passw=document.getElementById("validationServer0112");
+    if(passw.type=='password'){
+      passw.type='text';
+    }else{
+      passw.type='password';}
+    
+    }
+  </script>
+  <script>
+    var input=document.getElementById("validationServer032");
+    var liba=document.getElementById("libe");
+     
+    input.onfocus=function(){
+      liba.style.display='block';
+    }
+
+    input.onblur=function(){
+      liba.style.display='none';
+    }
+  </script>
+    </div>
+   
+{% endblock content %}

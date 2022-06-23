@@ -1,0 +1,15 @@
+{% extends 'admin/base.html' %}
+
+{% load static %}
+
+{% block branding %}
+<
+   
+   <h1 id="head">
+    <img src="{% static 'img/pizza.png'%}" class="img-brand" style="width:100px;height:100px;transform:rotate(360deg);"  alt="mypizza">
+       My Pizza Adminstration</h1> 
+    
+{% endblock %}
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'css/admin.css' %}">
+{% endblock %}

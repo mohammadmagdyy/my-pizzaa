@@ -1,0 +1,153 @@
+{%  extends 'base.html' %}
+
+{% load static %}
+
+{%  block content %}
+<br>
+<div class="my-form container p-5 my-5 rounded border border-warning">
+ <h1 class="text-center">MyCart</h1>
+ <hr>
+ {% if request.user.is_authenticated %}
+ {% if messages %}
+
+ {% for msg in messages %}
+           <div class="alert alert-{{msg.tags}} alert-dismissible fade show" role="alert">
+             <strong></strong>
+             {{msg}}
+             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+             </button>
+           </div>
+       {% endfor %}
+
+  {% endif %}
+{% else %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong></strong>
+ you must loggin first.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+{%  endif %}
+{% if request.user.is_authenticated %}
+
+{% if order %}
+<h3>Full Name: <span class="my-num">{{customer.name}}</span></h3>
+<hr>
+<h3>ordernumber:<span class="my-num"> {{order.id}} </span>with total:<span class="my-num">{{total}}</span> for<span class="my-num"> {{orderdetails.count}}</span> products</h3>
+<hr>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">product</th>
+        <th scope="col">Image</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+        <th scope="col">Total</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+        {%for sub in orderdetails %}
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{sub.product.name}}</td>
+        <td><img src="{{sub.product.photo}}" style="width:50px;height:50px;"></td>
+        <td><a href="{% url 'add_to_quantity' orderdetail_id=sub.id  %}"class="btn btn-outline-info">+</a>  {{sub.quatity}}  <a  href="{% url 'sub_from_quantity' orderdetail_id=sub.id  %}" class="btn btn-outline-dark">-</button></td>
+        <td>{{sub.price}}</td>
+        <td>{% widthratio sub.price 1 sub.quatity %}</td>
+        <td><a   href="{% url 'remove_from_cart' orderdetail_id=sub.id  %}"class="btn btn-outline-danger">Remove</a></td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <th scope="row">Total</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>{{total}}</td>
+      </tr>
+     
+      
+    </tbody>
+  </table>
+  <div class="row d-flex justify-content-center">
+    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" >Check</button>
+    
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Check</h5>
+        <button type="button" class="btn-close" data-dismiss="modal"id="btnexit" aria-label="Close">&times </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" id="frmpay" action="{% url 'payment' %}">
+            {% csrf_token %}
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Shipment Address:</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" name="shipmentaddress" placeholder="Enter the address you want to recieve your order in.." value="{{shipadd}}"required>
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Shipment Phone:</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" name="shipmentphone" placeholder="Enter your phone number" value="{{shipphon}}" required>
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Card Number:</label>
+            <input class="form-control" id="exampleInputEmail1" placeholder="333 333 333 333" name="cardnumber" value="{{cardno}}" required>
+          </div>
+          <div class="form-row">
+          <div class="col-lg-6 mb-3">
+            <label for="recipient-name" class="col-form-label">Expire Date:</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" name="expiredate" placeholder="mm/yy" value="{{date}}"required>
+          </div>
+          <div class="col-lg-6 mb-3">
+            <label for="recipient-name" class="col-form-label">Security code:</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" name="securitycode" placeholder="333" value="{{code}}" required>
+          </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer  justify-content-center">
+        <button type="button"  data-dismiss="modal"  class="btn btn-outline-warning">Close</button>
+        <button onclick="pay()" href="{% url 'payment' %}" name="btnpayment"  class="btn btn-outline-danger">Payment</button>
+      </div>
+    
+    </div>
+    
+  </div>
+
+</div>
+
+  </div>
+  {%  else %}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong></strong>
+    No orders here
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endif %}
+{% else %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong></strong>
+    you must loggin to have a cart
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+{% endif %}
+<script>
+    function pay(){
+    document.getElementById("btnexit").click();
+    document.getElementById("frmpay").submit();
+}
+</script>
+</div>
+{% endblock content  %}
