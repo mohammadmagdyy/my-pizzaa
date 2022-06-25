@@ -20,3 +20,12 @@ input[type="submit"], button {
 .img-brand:hover{
  transform:rotate(360deg);
 }
+input[type="submit"].default{
+    background-color: darkred;
+}
+input[type="submit"].default:hover{
+    background-color: red;
+}
+input[type="submit"]:hover, button :hover{
+    background-color: red;
+}

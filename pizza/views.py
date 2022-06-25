@@ -379,6 +379,7 @@ def addtocard(request):
                      return redirect('flavor/'+request.POST['pro_id'])
         else:
             messages.info(request,'you must loggin to order!')
+            return redirect('flavor/'+request.POST['pro_id'])
      else:
             return redirect('flavor/'+request.POST['pro_id'])
 def mycard(request):
