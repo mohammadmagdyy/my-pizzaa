@@ -11,13 +11,13 @@
       <div class="row p-4" style="padding-left: 17% ;">
     {%  for pro in products %}
       <div>
-  <div class="card m-2" style="width:18rem;">
-    <img src="{{pro.photo}}" class="card-img-top" alt="...">
+  <div class="card m-2" style="width:18rem;height:28rem;">
+    <img src="{{pro.photo}}" class="card-img-top" alt="... "style="height:289px;">
 
 <div class="card-body">
 <h5 class="card-title">{{pro.name}}</h5>
 <p class="card-text text-truncate">{{pro.description}}</p>
-<a href="{% url 'flavor' pro_id=pro.id %}" class="btn btn-warning">show details</a>
+<a href="{% url 'flavor' pro_id=pro.id %}" class="btn btn-warning" >show details</a>
 </div>
 </div>
 </div>
