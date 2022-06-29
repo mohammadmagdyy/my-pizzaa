@@ -38,7 +38,8 @@
 <hr>
 <h3>ordernumber:<span class="my-num"> {{order.id}} </span>with total:<span class="my-num">{{total}}</span> for<span class="my-num"> {{orderdetails.count}}</span> products</h3>
 <hr>
-<table class="table">
+<div class="table-responsive">
+<table class="table table-sm table-striped">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -74,6 +75,7 @@
       
     </tbody>
   </table>
+</div>
   <div class="row d-flex justify-content-center">
     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" >Check</button>
     

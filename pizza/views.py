@@ -33,7 +33,7 @@ def signup(request):
     matt=None
     matt2=None
     terms=None
-    username=''
+    username=None
     if request.method == 'POST' and 'btnsubmitup' in request.POST:
         if 'fname' in request.POST and 'user' in request.POST and 'phone' in request.POST and 'city' in request.POST and 'email' in request.POST and 'confirmpass' in request.POST and 'gender' in request.POST and 'terms' in request.POST and 'pass' in request.POST:
             fname=request.POST['fname']
