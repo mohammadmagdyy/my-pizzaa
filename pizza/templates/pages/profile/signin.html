@@ -38,11 +38,7 @@
    
       
      {% if request.user.is_authenticated %}
-  <div style="display:none;">
-     <label for="exampleInputEmail1">username:</label>
-     <input type="text" class="form-control" name="user" value="{{username}}" id="exampleInputEmail1" aria-describedby="emailHelp"placeholder="Enter your username">
-     <small id="emailHelp" class="form-text text-muted"style="display:none;">We'll never share your email with anyone else.</small>
-     </div>
+  
      
        {% else %}
        <div >
@@ -52,10 +48,7 @@
         </div>
        {% endif %}
        {% if request.user.is_authenticated %}
-       <div style="display:none;">
-    <label for="exampleInputPassword1">Password:</label>
-    <input type="password" name="psw" value="{{password}}" class="form-control" id="validationServer0112"placeholder="Enter your password">
-     </div>
+       
      {% else  %}
      <div >
       <label for="exampleInputPassword1">Password:</label>
@@ -75,14 +68,13 @@
        </div>
      {% endif %}
  {% if request.user.is_authenticated  %}
-     <div class="row d-flex justify-content-center" >
-   <button type="submit" name="btnsubmit" style="margin-top:10px;width:180px;display:none;" class="btn btn-outline-success  ">Sign in</button>
+    
    {% else %}
    <div class="row d-flex justify-content-center" >
    <button type="submit" name="btnsubmit" style="margin-top:10px;width:180px;" class="btn btn-outline-success  ">Sign in</button>
    {% endif%}
   </div>
-  </form>
+  </form>  
   </div>
   <script>
     var mail=document.getElementById("exampleInputEmail1");

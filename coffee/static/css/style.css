@@ -194,3 +194,7 @@ input[type=number]:focus,
   height:45px;
  
 }
+#price{
+  margin-top: 0.5px;
+  margin-left: 0.5px;
+}

@@ -1,4 +1,4 @@
-
+from django.utils.html import format_html
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
@@ -190,7 +190,7 @@ def signup(request):
 
 
 
-                    messages.success(request,'you registered sucess')
+                    messages.success(request,format_html("you registered sucess ,<a href='/signin' style='color:green;'>sign in</a> if you want to buy any of our product"))
                     return redirect('signup')
                    
         else:
@@ -247,7 +247,7 @@ def profile(request):
     city=None
     gender=None
     email=None
-    
+    context=None
     if request.user.is_authenticated:
         customer=customers.objects.get(user=request.user)
         context= {
@@ -284,9 +284,13 @@ def profile(request):
                 request.user.save()
                 customer.save()
                 messages.success(request,'your data has been saved')
+    else:
+         messages.success(request,'you must loggin to edit your profile')
+        
+         return render(request,'pages/profile/profile.html',context)
 
-        return render(request,'pages/profile/profile.html',context)
-        if request.method=='POST' and 'btnsave' in request.POST:
+    return render(request,'pages/profile/profile.html',context)
+    if request.method=='POST' and 'btnsave' in request.POST:
             fname=request.POST['fname']
             username=request.POST['user']
             phone=request.POST['phone']
@@ -495,27 +499,42 @@ def paymentt(request):
         cardnumbere=request.POST['cardnumber']
         expiredatee=request.POST['expiredate']
         securitycodee=request.POST['securitycode']
-       
-        if request.user.is_authenticated and not request.user.is_anonymous:
-            if orders.objects.all().filter(user=request.user,is_finised=False):
-               orderss=orders.objects.get(user=request.user,is_finised=False)
-               paymente=payment(order=orderss,shipmentaddress=shipmentaddresse,shipmentphone=shipmentphonee,cardnumber=cardnumbere,expiredate=expiredatee,securitycode=securitycodee)
-               paymente.save()
-               orderss.is_finised=True
-               orderss.save()
-               context={
-                    'shipadd':shipmentaddresse,
-                    'shipphon':shipmentphonee,
-                    'cardno':cardnumbere,
-                    'date':expiredatee,
-                    'code':securitycodee
-                }
-               messages.success(request,'your order is finished')
+        if  shipmentaddresse and shipmentphonee and  cardnumbere and  expiredatee and securitycodee:
+            if request.user.is_authenticated and not request.user.is_anonymous:
+                if orders.objects.all().filter(user=request.user,is_finised=False):
+                    orderss=orders.objects.get(user=request.user,is_finised=False)
+                    paymente=payment(order=orderss,shipmentaddress=shipmentaddresse,shipmentphone=shipmentphonee,cardnumber=cardnumbere,expiredate=expiredatee,securitycode=securitycodee)
+                    paymente.save()
+                    orderss.is_finised=True
+                    orderss.save()
+                    context={
+                            'shipadd':shipmentaddresse,
+                            'shipphon':shipmentphonee,
+                            'cardno':cardnumbere,
+                            'date':expiredatee,
+                            'code':securitycodee
+                        }
+                    messages.success(request,'your order is finished')
+                else:
+                     messages.success(request,'your order is must loggin finished')
             else:
-              messages.success(request,'your order is must loggin finished')
-        else:
                   messages.success(request,'your order is must order finished')  
-
+        elif shipmentaddresse=='':
+             messages.success(request,'please,Enter the shipment address')
+             return redirect('mycard')
+        elif shipmentphonee=='':
+             messages.success(request,'please,Enter the shipment phone')
+             return redirect('mycard')
+        
+        elif cardnumbere=='':
+             messages.success(request,'please,Enter your card number')
+             return redirect('mycard')
+        elif expiredatee=='':
+             messages.success(request,'please,Enter the expire date of your card')
+             return redirect('mycard')
+        elif securitycodee=='':
+             messages.success(request,'please,Enter the security code of your card')
+             return redirect('mycard')
     else:
         if request.user.is_authenticated and not request.user.is_anonymous:
             orderr=orders.objects.get(user=request.user)

@@ -62,31 +62,7 @@
         </div>
      </div>
      {% else %}
-     <div class="form-row" style="display:none;">
-      
-      <div class="col-lg-7 mb-3">
-        <label for="validationServer01">Full name</label>
-        <input type="text" name="fname" value="{{fname}}" class="form-control " id="validationServer01" placeholder="Enter your full name" >
-        <div class="valid-feedback">
-          Looks good!
-        </div>
-      </div>
-      <div class="col-lg-7  mb-3">
-        <label for="validationServer02">user name</label>
-        <input type="text" name="user" class="form-control " value="{{user}}" id="validationServer02" placeholder="Enter your user name" readonly>
-        <div class="valid-feedback">
-          Looks good!
-        </div>
-      </div>
-    
-    <div class="col-lg-7  mb-3">
-        <label for="validationServer03">phone number</label>
-        <input type="tel" class="form-control " id="validationServer03" placeholder="Enter your phone number" required>
-        <div class="valid-feedback">
-          Looks good!
-        </div>
-      </div>
-   </div>
+   
      {% endif  %}
      {% if request.user.is_authenticated %}
        <div class="form-row">
@@ -120,34 +96,7 @@
         </div>
       </div>
       {% else %}
-      <div class="form-row" style="display:none;">
-      
-        <div class="col-lg-6 mb-3">
-          <label for="validationServer01">password</label>
-          <input type="password"  class="form-control " id="InputPassword1" placeholder="Enter a sutible password"name="password"
-      data-by-identical="true"
-       data-by-identical-field="confirm password"
-        data-by-identical-message="the password and its confirm are not the same"
-          required>
-          <div class="valid-feedback">
-            Looks good!
-          </div>
-           <h6 id="rw1" class="valid">passwords must contain 8 characters inluding a capital letter , small letter and number</h6>
-        </div>
-        <div class="col-lg-6  mb-3">
-          <label for="validationServer02">confirm password</label>
-          <input type="password" class="form-control " id="InputPassword2" placeholder="confirm password" 
-                 data-by-identical="true"
-       data-by-identical-field="password"
-        data-by-identical-message="the password and its confirm are not the same"
-    
-          required>
-          <div class="valid-feedback">
-           val
-          </div>
-          <h6 id="rw" class="valid">passwords don,t match</h6>
-        </div>
-      </div>
+     
       {% endif %}
       {% if request.user.is_authenticated %}
       <div class="form-row">
@@ -168,33 +117,7 @@
         </div>
       </div>
       {% else %}
-      <div class="form-row" style="display:none;">
-        <div class="col-lg-6 mb-3">
-          <label for="validationServer03">City</label>
-          <input type="text" class="form-control" id="validationServer03" aria-describedby="validationServer03Feedback" placeholder="Enter your city" required>
-          <div id="validationServer03Feedback" class="invalid-feedback">
-            Please provide a valid city.
-          </div>
-        </div>
-        <div class="col-lg-3 mb-3">
-          <label for="validationServer04">Gender</label>
-          <select class="custom-select " id="validationServer04" aria-describedby="validationServer04Feedback" required>
-            <option selected disabled value="">Choose...</option>
-            <option>Male</option>
-             <option>Fe-Male</option>
-          </select>
-          <div id="validationServer04Feedback" class="invalid-feedback">
-            Please select a valid gender.
-          </div>
-        </div>
-        <div class="col-lg-3 mb-3">
-          <label for="validationServer05">Address</label>
-          <input type="text" class="form-control " id="validationServer05" aria-describedby="validationServer05Feedback" placeholder="Enter your address" required>
-          <div id="validationServer05Feedback" class="invalid-feedback">
-            Please provide a valid address.
-          </div>
-        </div>
-      </div>
+     
       {% endif %}
       {% if request.user.is_authenticated %}
       <div class="form-group">
@@ -229,12 +152,7 @@
      
       </div>
       {% else %}
-      <div class="form-row" style="display:none;">
-        <div class="col-lg-3 mb-3">
-        <button class="btn btn-outline-success" type="submit"style="margin-left:475px;">Save changes </button>
-        </div>
-       
-        </div>
+      
       {% endif %}
     </form>
     </div>

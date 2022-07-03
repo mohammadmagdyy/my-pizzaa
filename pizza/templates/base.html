@@ -59,6 +59,29 @@
       window.location="search.html";
       };
       </script>
+      <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyAxRupf0g85zHq6Gqgn4swS2vh5AdCuWOc",
+          authDomain: "my-pizzaa.firebaseapp.com",
+          projectId: "my-pizzaa",
+          storageBucket: "my-pizzaa.appspot.com",
+          messagingSenderId: "180680899756",
+          appId: "1:180680899756:web:a75b20f2872bf45ae47309",
+          measurementId: "G-KL1KEG1ZR1"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
       
 </body>
 
