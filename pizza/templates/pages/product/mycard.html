@@ -36,7 +36,7 @@
 {% if order %}
 <h3>Full Name: <span class="my-num">{{customer.name}}</span></h3>
 <hr>
-<h3>ordernumber:<span class="my-num"> {{order.id}} </span>with total:<span class="my-num">{{total}}</span> for<span class="my-num"> {{orderdetails.count}}</span> products</h3>
+<h3>ordernumber: <span class="my-num"> {{order.id}}  </span> with total: <span class="my-num">{{total}} </span> for <span class="my-num"> {{orderdetails.count}} </span> products</h3>
 <hr>
 <div class="table-responsive">
 <table class="table table-sm table-striped">
@@ -56,7 +56,7 @@
       <tr>
         <th scope="row">{{forloop.counter}}</th>
         <td>{{sub.product.name}}</td>
-        <td><img src="{{sub.product.photo}}" style="width:50px;height:50px;"></td>
+        <td><img src='https://firebasestorage.googleapis.com/v0/b/my-pizzaa.appspot.com/o/{{sub.product.name}}.jpg?alt=media&token=d87958a3-3b21-4fb5-a757-f0987962d7b9' style="width:50px;height:50px;"></td>
         <td><a href="{% url 'add_to_quantity' orderdetail_id=sub.id  %}"class="btn btn-outline-info">+</a>  {{sub.quatity}}  <a  href="{% url 'sub_from_quantity' orderdetail_id=sub.id  %}" class="btn btn-outline-dark">-</button></td>
         <td>{{sub.price}}</td>
         <td>{% widthratio sub.price 1 sub.quatity %}</td>
