@@ -214,18 +214,18 @@ def signup(request):
 def signin(request):
     username=None
     password=None
-    if request.method=='POST' and 'btnsubmit' in request.POST:
+    if request.method=='POST' and 'btnsubmit' in request.POST and 'user' in request.POST and 'psw' in request.POST and 'agree' in request.POST:
        
            username=request.POST['user']
            password=request.POST['psw']
-          
-           user=auth.authenticate(username=username,password=password)
-           if user is not None:
+           if username and password:
+                user=auth.authenticate(username=username,password=password)
+                if user is not None:
                    auth.login(request,user)
                    messages.success(request,'you have loggined successfully')
                    username=''
                    password=''
-           else:
+                else:
                     messages.warning(request,'wrong username or password!')
                     return render(request,'pages/profile/signin.html',
                     {
@@ -233,9 +233,13 @@ def signin(request):
                         'password':password
                     }
                     )
+           else:
+                messages.warning(request,'wrong username or password!') 
+                return redirect('signin') 
                   
            return redirect('signin')
     else:  
+        messages.warning(request,'something went wrong!')
         return render(request,'pages/profile/signin.html')
 
 def profile(request):
