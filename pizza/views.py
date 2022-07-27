@@ -1,5 +1,5 @@
 from django.utils.html import format_html
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -307,7 +307,12 @@ def profile(request):
                 if request.user.is_authenticated and 'agree' in request.POST:
                     pass
     
-
+def rest(request):
+    data = customers.objects.all()
+    response={
+    'customer':list(data.values())
+    }
+    return JsonResponse(response)
 def logout(request):
     auth.logout(request)
     return redirect('index')

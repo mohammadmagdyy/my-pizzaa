@@ -20,6 +20,7 @@ urlpatterns = [
      path('  <int:orderdetail_id>',views.add_to_quantity,name='add_to_quantity'),
           path('   <int:orderdetail_id>',views.sub_from_quantity,name='sub_from_quantity'),
           path('payment',views.paymentt,name="payment"),
+          path('rest',views.rest,name="rest"),
           path('admin', admin.site.urls),
           path('generalsearch',views.generalsearch,name="generalsearch")
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
